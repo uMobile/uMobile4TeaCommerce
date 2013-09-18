@@ -7,8 +7,8 @@
     <ProjectGuid>{FD0CA600-0B6B-42A0-9D78-14798D573BB0}</ProjectGuid>
     <OutputType>Library</OutputType>
     <AppDesignerFolder>Properties</AppDesignerFolder>
-    <RootNamespace>contrib.uMobile.TeaCommerce</RootNamespace>
-    <AssemblyName>contrib.uMobile.TeaCommerce</AssemblyName>
+    <RootNamespace>lecoati.uMobile.TeaCommerce</RootNamespace>
+    <AssemblyName>lecoati.uMobile.TeaCommerce</AssemblyName>
     <TargetFrameworkVersion>v4.5</TargetFrameworkVersion>
     <FileAlignment>512</FileAlignment>
   </PropertyGroup>

@@ -15,7 +15,7 @@ using lecoati.uMobile.umHelpers;
 /// <summary>
 /// Summary description for umTeaCommerce
 /// </summary>
-[umClass(Category = "Tea Commerce", Icon = GenericIcon.Money)]
+[umClass(Category = "Tea Commerce", Icon = GenericIcon.Bug)]
 public class umTeaCommerce : uMobile
 {
     [umMethod]

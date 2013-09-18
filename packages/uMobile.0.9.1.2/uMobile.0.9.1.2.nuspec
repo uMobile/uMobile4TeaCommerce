@@ -1,0 +1,17 @@
+<?xml version="1.0"?>
+<package xmlns="http://schemas.microsoft.com/packaging/2010/07/nuspec.xsd">
+  <metadata>
+    <id>uMobile</id>
+    <version>0.9.1.2</version>
+    <title>uMobile</title>
+    <authors>LECOATÍ TECHNOLOGY</authors>
+    <owners>LECOATÍ TECHNOLOGY</owners>
+    <licenseUrl>http://mit-license.org/</licenseUrl>
+    <projectUrl>http://www.umobileapp.com/</projectUrl>
+    <iconUrl>http://www.umobileapp.com/img/logo.png</iconUrl>
+    <requireLicenseAcceptance>false</requireLicenseAcceptance>
+    <description>uMobile allows you to quickly and easily develop mobile applications for management of Umbraco instances</description>
+    <language />
+    <tags>Umbraco Mobile Application</tags>
+  </metadata>
+</package>

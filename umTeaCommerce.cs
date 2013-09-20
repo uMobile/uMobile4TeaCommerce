@@ -29,10 +29,6 @@ namespace lecoati.uMobile.Extensions
         {
             List list = new List();
 
-            //foreach (Country c in TC.GetCountries(1)) {
-            //    list.AddListItem(new ListItem(c.Name, subtitle: c.RegionCode + " ", icon: GenericIcon.FlagAlt));
-            //}
-
             Store currentStore = TC.GetStore(1);
             XElement allOrders = TC.GetAllFinalizedOrdersAsXml(1);
 
@@ -66,16 +62,16 @@ namespace lecoati.uMobile.Extensions
             List orderList = new List();
 
             string statusName = TCExtensions.GetOrderStatus(order.StoreId, order.OrderStatusId).Name.ToString();
-            bool positiveStatus = PositiveWord(statusName);
+            //bool positiveStatus = PositiveWord(statusName);
 
-            if (positiveStatus)
-            {
-                statusName = "<b style='color: green;'>" + statusName + "</b>";
-            }
-            else
-            {
-                statusName = "<b style='color: red;'>" + statusName + "</b>";
-            }
+            //if (positiveStatus)
+            //{
+            //    statusName = "<b style='color: green;'>" + statusName + "</b>";
+            //}
+            //else
+            //{
+            //    statusName = "<b style='color: red;'>" + statusName + "</b>";
+            //}
             
             ListItem detailsRow = new ListItem(
                 title:
@@ -84,10 +80,10 @@ namespace lecoati.uMobile.Extensions
                     "City: " + order.Properties.Get("city").ToString() + "<br />" +
                     "Total Price: " + order.TotalPrice.Formatted + "<br />" +
                     "Date Created: " + order.DateCreated + "<br /><br />" +
-                    "<span style='font-size: 1.5em; margin-top: 20px;'>" + "Email: <a href='mailto:" + order.Properties.Get("email").ToString() + "'>" + order.Properties.Get("email").ToString() + "</a></span><br />" +
-                    "<span style='font-size: 1.5em;'>" + "Phone: " + order.Properties.Get("phone").ToString() + "</span>" + 
+                    "<span style='font-size: 1.3em; margin-top: 20px;'>" + "Email: <a href='mailto:" + order.Properties.Get("email").ToString() + "'>" + order.Properties.Get("email").ToString() + "</a></span><br />" +
+                    "<span style='font-size: 1.3em;'>" + "Phone: " + order.Properties.Get("phone").ToString() + "</span>" + 
                     "<br />" +
-                    "<span style='font-size: 1.5em;'>Status: " + statusName + "</span>"
+                    "<span style='font-size: 1.3em;'>Status: " + statusName + "</span>"
             );
 
             orderList.AddListItem(detailsRow);
@@ -98,11 +94,11 @@ namespace lecoati.uMobile.Extensions
                 action: new Call("ChangeOrderStatus", new string[] { storeId, orderId })
             ));
 
-            orderList.AddListItem(new ListItem(
-                title: "Send Email",
-                icon: GenericIcon.EnvelopeAlt,
-                action: new Call("SendEmail", new string[] { storeId, orderId })
-            ));
+            //This is not working at the moment because I was not able to find out the way to get the emailtemplates from the API
+            //orderList.AddListItem(new ListItem(
+            //    title: "Send Email",
+            //    icon: GenericIcon.EnvelopeAlt
+            //));
 
             return orderList.UmGo(order.OrderNumber);
         }
@@ -152,6 +148,7 @@ namespace lecoati.uMobile.Extensions
             return (new MessageBox("Order edited successfully")).UmGo();
         }
 
+        //Not working. TODO: Find a way to get the TeaCommerce email templates from the API and send it to the costumers.
         [umMethod(Title = "Send Email", Visible = false)]
         public static string SendEmail(string storeId, string orderId)
         {
@@ -161,6 +158,8 @@ namespace lecoati.uMobile.Extensions
             TeaCommerce.Umbraco.Application.Trees.Tasks.EmailTemplateTask emailTask = new TeaCommerce.Umbraco.Application.Trees.Tasks.EmailTemplateTask();
             emailTask.Alias = "confirmationEmail";
             emailTask.TypeID = 1;
+
+            long? templateId = store.ConfirmationEmailTemplateId;
 
             if (emailTask.Save()) {
                 return (new MessageBox("Email sended.")).UmGo();

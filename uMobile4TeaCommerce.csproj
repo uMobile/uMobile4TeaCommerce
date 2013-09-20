@@ -189,7 +189,7 @@
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
   <PropertyGroup>
-    <PostBuildEvent>xcopy /s /y "$(TargetDir)lecoati.uMobile.TeaCommerce.dll" "D:\Proyectos\demo_teacommerce\bin"</PostBuildEvent>
+    <PostBuildEvent>IF EXIST "D:\Proyectos\demo_teacommerce\bin" xcopy /s /y "$(TargetDir)lecoati.uMobile.TeaCommerce.dll" "D:\Proyectos\demo_teacommerce\bin"</PostBuildEvent>
   </PropertyGroup>
   <Import Project="$(SolutionDir)\.nuget\NuGet.targets" Condition="Exists('$(SolutionDir)\.nuget\NuGet.targets')" />
   <!-- To modify your build process, add your task inside one of the targets below and uncomment it. 
